@@ -6,9 +6,10 @@ use App\Models\Users\BuyerDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BookRating extends Model
+class AudioBookRating extends Model
 {
     use HasFactory;
+
 
     protected $fillable = [
         'buyer_id',
@@ -22,7 +23,7 @@ class BookRating extends Model
      */
     public function book()
     {
-        return $this->belongsTo(Book::class, 'book_id');
+        return $this->belongsTo(AudioBook::class, 'book_id');
     }
 
     /*

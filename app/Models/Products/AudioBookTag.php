@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Models\Products;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BookTag extends Model
+class AudioBookTag extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-      'name',
-      'book_id'
+        'name',
+        'book_id'
     ];
 
     /*
@@ -20,6 +18,7 @@ class BookTag extends Model
      */
     public function books()
     {
-        return $this->belongsTo(Book::class, 'book_id');
+        return $this->belongsTo(AudioBook::class, 'book_id');
     }
+
 }
