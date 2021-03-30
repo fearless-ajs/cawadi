@@ -5,17 +5,21 @@ namespace App\Models\Payments;
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payout extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
       'description',
       'destination_user_id',
       'destination_account_no',
-      'country_country',
+      'destination_country',
       'gateway_id',      // Payment gateway used for the payout
       'approved_by_id',  // The admin that approved the payment
+      'status',
       'approved_at',     // The time the payout was approved
     ];
 

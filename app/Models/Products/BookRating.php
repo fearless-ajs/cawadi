@@ -5,10 +5,12 @@ namespace App\Models\Products;
 use App\Models\Users\BuyerDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookRating extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'buyer_id',

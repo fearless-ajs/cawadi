@@ -4,10 +4,13 @@ namespace App\Models\Users;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BuyerDetail extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
+
 
     protected $fillable = [
         'user_id',
@@ -21,7 +24,7 @@ class BuyerDetail extends Model
         'city',
         'state',
         'country',
-        'zip_code',          //Optional
+        'zipcode',          //Optional
         'language',          //English, French or others
         'biography',
         'interest',

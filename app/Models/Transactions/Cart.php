@@ -7,10 +7,16 @@ use App\Models\Products\Book;
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cart extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+    const AUDIO_BOOK = 'Audio';
+    const TEXT_BOOK  = 'Text';
+
     protected $fillable = [
       'book_id',
       'book_type',

@@ -15,6 +15,9 @@ class CreateAudioBookTagsTable extends Migration
     {
         Schema::create('audio_book_tags', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('book_id')->constrained('audio_books');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

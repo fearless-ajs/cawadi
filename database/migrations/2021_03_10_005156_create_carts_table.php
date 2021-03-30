@@ -15,6 +15,12 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('book_type');
+            $table->integer('volume');
+            $table->foreignId('book_id')->constrained('books');
+            $table->string('status')->default('waiting'); //Bought or Waiting
+            $table->softDeletes();
             $table->timestamps();
         });
     }

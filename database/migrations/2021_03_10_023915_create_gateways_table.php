@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePublisherDetailsTable extends Migration
+class CreateGatewaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreatePublisherDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('publisher_details', function (Blueprint $table) {
+        Schema::create('gateways', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('link');
+            $table->string('secret');
+            $table->string('secret_key');
+            $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreatePublisherDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publisher_details');
+        Schema::dropIfExists('gateways');
     }
 }

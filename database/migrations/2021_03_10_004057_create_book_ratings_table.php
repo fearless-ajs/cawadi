@@ -15,6 +15,10 @@ class CreateBookRatingsTable extends Migration
     {
         Schema::create('book_ratings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('buyer_id')->constrained('buyer_details');
+            $table->integer('rating');
+            $table->foreignId('book_id')->constrained('books');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

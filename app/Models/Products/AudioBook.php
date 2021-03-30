@@ -7,11 +7,21 @@ use App\Models\Users\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class AudioBook extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+    const PREMIUM_BOOK = 'Premium';
+    const FREE_BOOK    = 'Free';
+    const SUSPENDED    = 'Suspended';
+    const ACTIVE       = 'Active';
+    const TERMINATED   = 'Terminated';
+
     protected $fillable = [
         'title',
         'type',               //Premium or free
@@ -20,6 +30,7 @@ class AudioBook extends Model
         'price',
         'abstract',
         'description',
+        'sold_out',
         'stock',              // Number of the book in stock or available
         'code',               // Product code
         'front_cover',        // Front Cover picture to be displayed
@@ -37,9 +48,9 @@ class AudioBook extends Model
     /*
      * Mutators
      */
-    public function setSlugAttribute($slug)
+    public function setSlugAttribute($title)
     {
-        $this->attributes['slug'] = Str::slug($slug).'_By_'.$this->author.Carbon::now()->timestamp.'_'.Str::random(30);
+        $this->attributes['slug'] = Str::slug($title).'_By_'.$this->author.Carbon::now()->timestamp.'_'.Str::random(30);
     }
 
     /*

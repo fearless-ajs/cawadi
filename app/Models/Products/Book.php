@@ -7,11 +7,20 @@ use App\Models\Users\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+    const PREMIUM_BOOK = 'Premium';
+    const FREE_BOOK    = 'Free';
+    const SUSPENDED    = 'Suspended';
+    const ACTIVE       = 'Active';
+    const TERMINATED   = 'Terminated';
+
     protected $fillable = [
         'title',
         'type',         //Premium or free
@@ -19,6 +28,7 @@ class Book extends Model
         'category',
         'price',
         'abstract',
+        'sold_out',
         'description',
         'stock',               // Number of the book in stock or available
         'code',                // Product code

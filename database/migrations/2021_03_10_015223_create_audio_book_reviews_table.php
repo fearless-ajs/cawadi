@@ -15,6 +15,10 @@ class CreateAudioBookReviewsTable extends Migration
     {
         Schema::create('audio_book_reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('buyer_id')->constrained('buyer_details');
+            $table->text('review');
+            $table->foreignId('book_id')->constrained('audio_books');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

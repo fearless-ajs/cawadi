@@ -15,6 +15,10 @@ class CreateBookReviewsTable extends Migration
     {
         Schema::create('book_reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('buyer_id')->constrained('buyer_details');
+            $table->foreignId('book_id')->constrained('books');
+            $table->text('review');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

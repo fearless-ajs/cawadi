@@ -15,6 +15,9 @@ class CreateBookTagsTable extends Migration
     {
         Schema::create('book_tags', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('book_id')->constrained('books');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

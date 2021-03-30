@@ -4,10 +4,12 @@ namespace App\Models\Users;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PublisherDetail extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'user_id',
@@ -15,13 +17,13 @@ class PublisherDetail extends Model
         'middle_name',     //Optional
         'last_name',
         'age',
-        'phone',
+        'phone',           //With country code
         'gender',
         'address',
         'city',
         'state',
         'country',
-        'zip_code',          //Optional
+        'zipcode',          //Optional
         'language',          //English, French or others
         'biography',
         'interest',
